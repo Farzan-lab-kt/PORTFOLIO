@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="portfolio-shell/integration.css">
+</head>
+<body>
+  <main class="portfolio-shell" aria-label="Portfolio">
+    <div class="section-frame section-frame--home is-active" id="homeFrameWrap">
+      <iframe id="homeFrame" title="Portfolio Home" src="home-section/index.html"></iframe>
+    </div>
+
+    <div class="section-frame" id="projectsFrameWrap" aria-hidden="true">
+      <iframe id="projectsFrame" title="My Projects" src="my-projects-section/v14work/index.html"></iframe>
+    </div>
+
+    <div class="section-frame" id="aboutFrameWrap" aria-hidden="true">
+      <iframe id="aboutFrame" title="About Me" src="about-contact-section/index.html"></iframe>
+    </div>
+
+    <button class="back-home" id="backHome" type="button" aria-label="Back to Home" hidden>← HOME</button>
+  </main>
+  <script src="portfolio-shell/integration.js"></script>
+</body>
+</html>
