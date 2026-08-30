@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Game developer portfolio — selected projects with playable mini-games." />
+  <title>MY PROJECTS // GAME DEV PORTFOLIO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <audio id="ticBgm" src="assets/spookwave-bgm.mp3" preload="auto" loop></audio>
+  <main class="projects-section" id="projects">
+    <audio id="siteBgm" src="assets/sans-bgm.mp3" loop preload="auto"></audio>
+    <div class="bg-art" aria-hidden="true"></div>
+    <div class="sun-glow" aria-hidden="true"></div>
+    <div class="particles" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="project-boot" id="projectBoot" aria-label="My Projects arcade start screen">
+      <div class="boot-dim" aria-hidden="true"></div>
+      <div class="boot-content">
+        <div class="boot-label">MY PROJECTS // SYSTEM STANDBY</div>
+        <button class="slot-machine-trigger" id="slotMachineTrigger" type="button" aria-label="Start My Projects">
+          <img id="slotMachineFrame" src="assets/slot-machine/01_idle.png" alt="Retro slot machine">
+        </button>
+        <div class="boot-hint" id="bootHint">CLICK THE SLOT MACHINE // START</div>
+      </div>
+    </div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div class="hud hud-left" aria-hidden="true">SYS_08 // PROJECT_ARCHIVE</div>
+    <div class="hud hud-right" aria-hidden="true">STATUS: ONLINE</div>
+
+    <div class="content">
+      <header class="section-header">
+        <div class="eyebrow"><span class="blink-dot"></span> PLAYER 01 // BUILD LOG</div>
+        <h1><span>MY</span> PROJECTS</h1>
+        <p class="intro">A collection of games built from code, algorithms, and way too many hours of gameplay.</p>
+        <div class="header-line"><span></span><b>SELECT YOUR GAME // PLAY THE BUILDS</b><span></span></div>
+      </header>
+<section class="project-grid" aria-label="Game projects">
+        <article class="project-card featured" data-project="tic-tac-toe">
+          <div class="card-top"><span>01</span><span class="live">● PLAYABLE LOGIC</span></div>
+          <div class="pixel-window">
+            <div class="window-bar"><i></i><i></i><i></i><span>MINIMAX.EXE</span></div>
+            <div class="game-preview tic-preview">
+              <canvas class="mini-game" id="ticGame" aria-label="Playable Tic-Tac-Toe game"></canvas>
+              <div class="game-ui">
+                <span id="ticStatus">PRESS PLAY // START BUILD</span>
+                <button class="reset-game" data-game="tic" type="button">RESET</button>
+              </div>
+              <div class="start-hint">CLICK A TILE TO PLAY</div>
+            </div>
+            <div class="game-controls">
+              <button class="play-game" data-game="tic" type="button">▶ PLAY BUILD</button><button class="stop-game" data-game="tic" type="button" hidden>■ STOP GAME</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>C++</span><span>SDL2</span><span>AI</span></div>
+            <h2>TIC-TAC-TOE<br><em>VS MINIMAX AI</em></h2>
+            <p>An unbeatable 3×3 strategy game using minimax with alpha-beta pruning, separated cleanly from the rendering layer.</p>
+            <div class="card-footer">
+              <span class="tech-note">SEARCH // GAME TREE</span>
+              <a href="https://github.com/Farzan-lab-kt/Tic-Tac-Toe-minimax" target="_blank" rel="noopener noreferrer">VIEW SOURCE <b>↗</b></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-project="pong">
+          <div class="card-top"><span>02</span><span>ARCADE // 1980</span></div>
+          <div class="pixel-window">
+            <div class="window-bar"><i></i><i></i><i></i><span>PONG.EXE</span></div>
+            <div class="game-preview pong-preview">
+              <canvas class="mini-game" id="pongGame" aria-label="Playable Pong game"></canvas>
+              <div class="game-ui">
+                <span id="pongStatus">PRESS PLAY // START BUILD</span>
+                <button class="reset-game" data-game="pong" type="button">RESET</button>
+              </div>
+            </div>
+            <div class="game-controls">
+              <button class="play-game" data-game="pong" type="button">▶ PLAY BUILD</button><button class="stop-game" data-game="pong" type="button" hidden>■ STOP GAME</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>C++</span><span>SDL2</span><span>GAME PHYSICS</span></div>
+            <h2>PONG<br><em>ARCADE CLONE</em></h2>
+            <p>A classic player-vs-AI Pong clone with fixed-timestep movement, AABB collision, and skill-based bounce angles.</p>
+            <div class="card-footer">
+              <span class="tech-note">PHYSICS // AI</span>
+              <a href="https://github.com/Farzan-lab-kt/Pong" target="_blank" rel="noopener noreferrer">VIEW SOURCE <b>↗</b></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-project="snake">
+          <div class="card-top"><span>03</span><span>TERMINAL // GRID</span></div>
+          <div class="pixel-window">
+            <div class="window-bar"><i></i><i></i><i></i><span>SNAKE.TTY</span></div>
+            <div class="game-preview snake-preview">
+              <canvas class="mini-game" id="snakeGame" aria-label="Playable Snake game"></canvas>
+              <div class="game-ui">
+                <span id="snakeStatus">PRESS PLAY // START BUILD</span>
+                <button class="reset-game" data-game="snake" type="button">RESET</button>
+              </div>
+              <div class="touch-controls" aria-label="Snake touch controls">
+                <button data-dir="up" type="button">▲</button>
+                <div><button data-dir="left" type="button">◀</button><button data-dir="down" type="button">▼</button><button data-dir="right" type="button">▶</button></div>
+              </div>
+            </div>
+            <div class="game-controls">
+              <button class="play-game" data-game="snake" type="button">▶ PLAY BUILD</button><button class="stop-game" data-game="snake" type="button" hidden>■ STOP GAME</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>C++</span><span>NCURSES</span><span>DSA</span></div>
+            <h2>SNAKE<br><em>TERMINAL EDITION</em></h2>
+            <p>A terminal Snake game using deque for O(1) movement and set-based collision checks for fast body lookup.</p>
+            <div class="card-footer">
+              <span class="tech-note">DEQUE + SET</span>
+              <a href="https://github.com/Farzan-lab-kt/snake-terminal-cpp" target="_blank" rel="noopener noreferrer">VIEW SOURCE <b>↗</b></a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="section-footer">
+        <span>03 GAMES LOADED</span>
+        <span class="pixel-rule"></span>
+        <span>MORE LEVELS IN DEVELOPMENT...</span>
+      </footer>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

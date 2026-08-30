@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="home" id="home">
+    <video class="background-video" id="backgroundVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="assets/home-background.mp4" type="video/mp4">
+    </video>
+    <div class="background-shade" aria-hidden="true"></div>
+
+    <section class="menu" aria-label="Portfolio main menu">
+      <header class="brand">
+        <div class="title-wrap" aria-label="My Portfolio">
+          <img class="portfolio-title-image" src="assets/my-portfolio-title.png" alt="MY PORTFOLIO">
+        </div>
+        <div class="tagline">Hello there!</div>
+      </header>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <button class="mc-button" type="button" data-target="projects">
+          <span class="mc-button-surface" aria-hidden="true"></span>
+          <span class="mc-button-label">My Projects</span>
+        </button>
+        <button class="mc-button" type="button" data-target="about">
+          <span class="mc-button-surface" aria-hidden="true"></span>
+          <span class="mc-button-label">About Me</span>
+        </button>
+        <button class="mc-button" type="button" data-target="hobbies">
+          <span class="mc-button-surface" aria-hidden="true"></span>
+          <span class="mc-button-label">My Hobbies</span>
+        </button>
+        <button class="mc-button" type="button" data-target="skills">
+          <span class="mc-button-surface" aria-hidden="true"></span>
+          <span class="mc-button-label">My Skills</span>
+        </button>
+        <button class="mc-button" type="button" data-target="contact">
+          <span class="mc-button-surface" aria-hidden="true"></span>
+          <span class="mc-button-label">Contact Info</span>
+        </button>
+      </nav>
+
+      <div class="menu-meta">PORTFOLIO WORLD // 1.0</div>
+    </section>
+
+    <section class="portal-layer" id="portalLayer" aria-hidden="true">
+      <video class="portal-video" id="portalVideo" muted playsinline preload="auto" poster="assets/portal-first-frame.jpg">
+        <source src="assets/portal-transition.mp4" type="video/mp4">
+      </video>
+      <div class="destination-reveal" id="destinationReveal"></div>
+    </section>
+
+    <div class="screen-reader-status" id="transitionStatus" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

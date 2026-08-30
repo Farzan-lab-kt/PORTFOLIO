@@ -1,0 +1,261 @@
+@font-face {
+  font-family: 'Minecraft';
+  src: url('assets/Minecraft.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --menu-width: min(52vw, 560px);
+  --button-gap: clamp(6px, .7vw, 10px);
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; min-height: 100%; margin: 0; }
+body { overflow: hidden; background: #000; }
+button { font: inherit; }
+
+.home {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  font-family: 'Minecraft', monospace;
+}
+
+.background-video,
+.background-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.background-video {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.background-shade {
+  z-index: -2;
+  pointer-events: none;
+  background: rgba(0, 0, 0, .13);
+}
+
+.menu {
+  position: relative;
+  z-index: 2;
+  width: var(--menu-width);
+  min-width: 310px;
+  margin: 0 auto;
+  padding-top: clamp(2vh, 3.5vh, 5vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: clamp(14px, 2vh, 24px);
+}
+
+/* Chunky Minecraft-inspired portfolio title.
+   The supplied Minecraft font is used for the text; the 3D outline/shadow
+   recreates the visual weight of the provided reference without altering it. */
+.title-wrap {
+  position: relative;
+  width: min(92vw, 1200px);
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  filter: drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+}
+
+/* Exact user-provided MY PORTFOLIO artwork, with only its outer black
+   background removed so the supplied lettering can sit over the video. */
+.portfolio-title-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Minecraft-style yellow splash text. */
+.tagline {
+  position: absolute;
+  z-index: 4;
+  top: 10%;
+  right: 1%;
+  color: #ffff2b;
+  font-size: clamp(18px, 2.15vw, 30px);
+  line-height: 1;
+  letter-spacing: .015em;
+  transform: rotate(-8deg);
+  transform-origin: center;
+  text-shadow:
+    2px 2px 0 #3c3c00,
+    3px 3px 0 rgba(0,0,0,.8);
+  white-space: nowrap;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--button-gap);
+}
+
+.mc-button {
+  position: relative;
+  width: 100%;
+  height: clamp(52px, 4.2vw, 64px);
+  aspect-ratio: auto;
+  border: 0;
+  padding: 0 7%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 2px 2px 0 #3b3b3b;
+  transition: filter 80ms linear, transform 80ms linear;
+}
+
+/* The supplied button image is used pixel-for-pixel after its blank white
+   outer area is removed. No gradient, border, or replacement skin is added. */
+.mc-button-surface {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image: url('assets/minecraft-button-exact.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.mc-button-label {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: clamp(17px, 1.35vw, 22px);
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 0;
+  transform: translateY(-1px);
+}
+
+.mc-button:hover,
+.mc-button:focus-visible {
+  filter: brightness(1.14);
+  transform: none;
+  outline: none;
+}
+
+.mc-button:active { transform: none; }
+.mc-button:disabled { cursor: default; }
+
+.menu-meta {
+  margin-top: clamp(20px, 3vh, 32px);
+  font-size: clamp(10px, .9vw, 13px);
+  letter-spacing: .06em;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.9);
+  opacity: .92;
+}
+
+.portal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: #000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 120ms linear, visibility 0s linear 120ms;
+}
+
+.portal-layer.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 120ms linear;
+}
+
+.portal-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  image-rendering: auto;
+}
+
+.destination-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.7s ease;
+}
+
+.destination-reveal.is-revealing { opacity: 0; }
+
+.home.is-transitioning .menu,
+.home.is-transitioning .background-video,
+.home.is-transitioning .background-shade {
+  pointer-events: none;
+}
+
+.screen-reader-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .home { min-height: 600px; }
+  .menu {
+    width: min(92vw, 650px);
+    padding-top: 3vh;
+  }
+  .brand { margin-bottom: 26px; }
+  .title-wrap { width: 92vw; }
+  .portfolio-title-image { max-height: 190px; }
+  .tagline {
+    top: 14%;
+    right: 3vw;
+    font-size: clamp(17px, 5vw, 25px);
+  }
+  .mc-button { height: clamp(50px, 11vw, 62px); }
+  .mc-button-label { font-size: clamp(16px, 4.2vw, 21px); }
+}
+
+@media (max-height: 680px) and (min-width: 701px) {
+  .menu { padding-top: 3vh; }
+  .brand { margin-bottom: 18px; }
+  .title-wrap { width: min(92vw, 1200px); }
+  .portfolio-title-image { max-height: 180px; }
+  .tagline { top: 14%; font-size: clamp(16px, 1.8vw, 25px); }
+  .menu-meta { margin-top: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-button, .portal-layer, .destination-reveal { transition: none; }
+}
