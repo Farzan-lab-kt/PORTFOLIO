@@ -78,6 +78,14 @@
         const win = homeWindow();
         if (!win || !win.portfolioHome || win.portfolioHome.isTransitioning()) return;
 
+        // Still inside the user's click, so this is the last moment the
+        // destination's audio can be unlocked. The transition runs for several
+        // seconds and the gesture does not survive it.
+        if (target === 'about') {
+          const aboutApi = frameApi(aboutFrame, 'portfolioAbout');
+          if (aboutApi && aboutApi.primeMusic) aboutApi.primeMusic();
+        }
+
         transitionHandoff = true;
         win.portfolioHome.beginPortalTransition(target);
       }, true);

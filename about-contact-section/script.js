@@ -68,5 +68,26 @@ setTimeout(launchTumbleweed, 2200);
 window.portfolioAbout = {
   startMusic,
   stopMusic,
-  isMusicOn: () => musicOn
+  isMusicOn: () => musicOn,
+
+  // Autoplay is granted per element, and only off a fresh gesture. By the time
+  // the portal transition ends the click is ~6.5s stale and play() is refused,
+  // so the shell calls this during the click itself: a silent play/pause marks
+  // the element as user-activated and startMusic() is allowed later.
+  primeMusic() {
+    const restore = bgMusic.volume;
+    bgMusic.volume = 0;
+    const attempt = bgMusic.play();
+    if (!attempt || !attempt.then) {
+      bgMusic.volume = restore;
+      return;
+    }
+    attempt.then(() => {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      bgMusic.volume = restore;
+    }).catch(() => {
+      bgMusic.volume = restore;
+    });
+  }
 };
