@@ -19,6 +19,39 @@
     });
     active = name;
     backHome.hidden = name === 'home';
+    applyAudio(name);
+  }
+
+  // Hiding a frame does not stop the media inside it, so every switch has to
+  // hand audio over by hand: silence the sections that are leaving, wake the
+  // one arriving. Home's music is a detached Audio object and About's needs to
+  // keep its button label in step, so both go through their own exports rather
+  // than through stopFrameMedia's DOM query.
+  function frameApi(frame, key) {
+    try {
+      const win = frame.contentWindow;
+      return (win && win[key]) || null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function applyAudio(name) {
+    const homeApi = frameApi(homeFrame, 'portfolioHome');
+    if (homeApi && homeApi.pauseMusic) {
+      if (name === 'home') homeApi.resumeMusic();
+      else homeApi.pauseMusic();
+    }
+
+    const aboutApi = frameApi(aboutFrame, 'portfolioAbout');
+    if (aboutApi) {
+      if (name === 'about') aboutApi.startMusic();
+      else aboutApi.stopMusic();
+    } else if (name !== 'about') {
+      stopFrameMedia(aboutFrame);
+    }
+
+    if (name !== 'projects') stopFrameMedia(projectsFrame);
   }
 
   function homeWindow() {

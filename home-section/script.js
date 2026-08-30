@@ -151,5 +151,16 @@ function finishPortalTransition(target) {
 
 window.portfolioHome = {
   beginPortalTransition,
-  isTransitioning: () => transitioning
+  isTransitioning: () => transitioning,
+
+  // The background music is a detached Audio object, so the shell cannot reach
+  // it by querying the DOM. These are its only handles on it.
+  pauseMusic() {
+    homeMusic.pause();
+  },
+  resumeMusic() {
+    // A transition that was cut short can leave the volume ducked at 0.06.
+    homeMusic.volume = 0.22;
+    homeMusic.play().catch(() => {});
+  }
 };

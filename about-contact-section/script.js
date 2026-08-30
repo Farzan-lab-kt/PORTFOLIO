@@ -61,3 +61,12 @@ function launchTumbleweed() {
 
 // Start after a delay so the page gets a quiet opening before the first pass.
 setTimeout(launchTumbleweed, 2200);
+
+// Arriving from Home is not a gesture inside this document, so the shell has to
+// start the music itself. Routing through startMusic/stopMusic rather than the
+// audio element keeps musicOn, the button state and its label in sync.
+window.portfolioAbout = {
+  startMusic,
+  stopMusic,
+  isMusicOn: () => musicOn
+};
